@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Address Verification APP</title>
+    <script language="javascript" type="text/javascript">
+        function fnSubmit() {
+            
+            var sFeatures = "dialogWidth: 300px;dialogHeight: 400px;dialogLeft: 200px;help: no; resizable: no; status: no";
+            var url = "Verify.htm";
+
+            //|| Line2.value == ""
+            if (Attn.value == "" || Line1.value == "" || City.value == "" || State.value == "" || Zip.value == "" || Country.value == "") {
+                alert("Enter all the fields");
+                return;
+            }
+
+            var myAddress = new Object();
+            myAddress.Attn = Attn.value;
+            myAddress.Line1 = Line1.value;
+            myAddress.Line2 = Line2.value;
+            myAddress.City = City.value;
+            myAddress.State = State.value;
+            myAddress.Zip = Zip.value;
+            myAddress.Country = Country.value;
+
+            //alert("values:" +      myAddress.Attn + " " + myAddress.Line1);
+
+            //var asRet = window.showModalessDialog(sURL, "", sFeatures);
+            var retval = window.showModelessDialog(url, myAddress, sFeatures); 
+
+            //window.open("Verify.htm", "", "menubar:no;titlebar:no;toolbar:no;width:100px;height:180px;resizable:yes;status:no");
+        } 
+    </script>   
+    
+    <style type="text/css">
+        #Text1
+        {
+            width: 185px;
+            margin-left: 0px;
+        }
+        #Text2
+        {
+            width: 181px;
+            margin-left: 25px;
+            height: 22px;
+        }
+        #Text3
+        {
+            width: 180px;
+            margin-left: 25px;
+        }
+        #Text4
+        {
+            width: 177px;
+            margin-left: 77px;
+        }
+        #Text5
+        {
+            width: 176px;
+            margin-left: 84px;
+        }
+        #Text6
+        {
+            width: 49px;
+            margin-left: 71px;
+        }
+        #Text7
+        {
+            width: 175px;
+            margin-left: 53px;
+        }
+        #Button1
+        {
+            width: 76px;
+            height: 24px;
+            margin-left: 115px;
+        }
+        #Line1
+        {
+            margin-left: 26px;
+        }
+        #Line2
+        {
+            margin-left: 26px;
+        }
+        #City
+        {
+            margin-left: 79px;
+        }
+        #Zip
+        {
+            margin-left: 84px;
+        }
+        #State
+        {
+            margin-left: 72px;
+        }
+        #Country
+        {
+            margin-left: 54px;
+        }
+        #Submit
+        {
+            margin-left: 116px;
+        }
+    </style>
+</head>
+<body style="width:300px;height:380px">
+    <p></p>
+    <p style="font-weight: bold">
+        Addr. ATTN:&nbsp;&nbsp;&nbsp;&nbsp; <input id="Attn" type="text"  value="Mr.Bill Gates" /></p>
+    <p style="font-weight: bold">
+        Addr. Line1:<input id="Line1" type="text" value="1 Microsoft Way" /></p>
+    <p style="font-weight: bold">
+        Addr. Line2:<input id="Line2" type="text" /></p>
+    <p style="font-weight: bold">
+        City:<input id="City" type="text" value="Redmond" /></p>
+    <p style="font-weight: bold">
+        Zip:<input id="Zip" type="text" value="98052" /></p>
+    <p style="font-weight: bold">
+        State:<input id="State" type="text"  value="WA" /></p>
+    <p style="font-weight: bold">
+        Country:<input id="Country" type="text" value="USA"/></p>
+    <p style="font-weight: bold">
+        <input id="Submit" type="button" value="Submit" onclick="fnSubmit()"/></p>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Address Verification APP</title>
+    <script language="javascript" type="text/javascript">
+        function fnLoadValues() {
+        
+            var oMyAddress = window.dialogArguments;
+            var Attn = oMyAddress.Attn;
+            var Line1 = oMyAddress.Line1;
+            var Line2 = oMyAddress.Line2;
+            var City = oMyAddress.City;
+            var State = oMyAddress.State;
+            var Zip = oMyAddress.Zip;
+            var Country = oMyAddress.Country;
+
+//            document.getElementById('Attn').value = Attn;
+//            document.getElementById('Line1').value = Line1;
+//            document.getElementById('Line2').value = Line2;
+//            document.getElementById('City').value = City;
+//            document.getElementById('State').value = State;
+//            document.getElementById('Zip').value = Zip;
+//            document.getElementById('Country').value = Country;
+
+            //Global Screen Specific variables	
+            var xmlHTTPNav = new ActiveXObject("Microsoft.XMLHTTP") ;
+            xmldocMessage = new ActiveXObject("Microsoft.XMLDOM") ;
+            xmldocMessage.async= false ;
+            
+            var sURL =  "http://maps.googleapis.com/maps/api/geocode/xml?address="+ Line1 + "," +City +"," + State + "&sensor=false";
+            //alert(sURL);
+            //debugger;     
+            //xmlHTTPNav.open("GET",sURL,false);
+            //xmlHTTPNav.send(fnReplacesinglequotes(sXML));
+            //sXML = xmlHTTPNav.ResponseText;
+            //alert(sXML);
+            //xmldocMessage.loadXML(sURL);
+            xmldocMessage.load(sURL);
+            //alert(xmldocMessage.xml);
+
+            document.getElementById('Attn').value = xmldocMessage.getElementsByTagName("formatted_address")[0].childNodes[0].nodeValue;
+            document.getElementById('Line1').value = xmldocMessage.getElementsByTagName("lat")[0].childNodes[0].nodeValue;
+            document.getElementById('Line2').value = xmldocMessage.getElementsByTagName("lng")[0].childNodes[0].nodeValue;
+
+           //document.getElementById('Attn').value = xmldocMessage.xml;
+
+           // alert(xmldocMessage.getElementsByTagName("formatted_address").id);
+
+            //to load Error XML File
+//	        //http://maps.googleapis.com/maps/api/geocode/xml?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&sensor=false
+
+            //alert("values:" + document.all.item("Attn").value + " " + document.all.item("Line1").value + " " + document.all.item("City").value);
+        } 
+    </script>   
+    
+    <style type="text/css">
+        #Text1
+        {
+            width: 185px;
+            margin-left: 0px;
+        }
+        #Text2
+        {
+            width: 181px;
+            margin-left: 25px;
+            height: 22px;
+        }
+        #Text3
+        {
+            width: 180px;
+            margin-left: 25px;
+        }
+        #Text4
+        {
+            width: 177px;
+            margin-left: 77px;
+        }
+        #Text5
+        {
+            width: 176px;
+            margin-left: 84px;
+        }
+        #Text6
+        {
+            width: 49px;
+            margin-left: 71px;
+        }
+        #Text7
+        {
+            width: 175px;
+            margin-left: 53px;
+        }
+        #Button1
+        {
+            width: 76px;
+            height: 24px;
+            margin-left: 115px;
+        }
+        #Line1
+        {
+            margin-left: 48px;
+            width: 171px;
+        }
+        #Line2
+        {
+            margin-left: 40px;
+            width: 166px;
+        }
+        #City
+        {
+            margin-left: 79px;
+        }
+        #Zip
+        {
+            margin-left: 84px;
+        }
+        #State
+        {
+            margin-left: 72px;
+        }
+        #Country
+        {
+            margin-left: 54px;
+        }
+        #Submit
+        {
+            margin-left: 116px;
+        }
+        #Attn
+        {
+            width: 176px;
+            margin-left: 0px;
+        }
+    </style>
+</head>
+<body style="width:300px;height:380px"  onload="fnLoadValues()">
+    <p></p>
+    
+    <p style="font-weight: bold">
+        Full Address:&nbsp;&nbsp;&nbsp;&nbsp; <input id="Attn" type="text" /></p>
+    <p style="font-weight: bold">
+        Latitude:<input id="Line1" type="text" /></p>
+        
+    <p style="font-weight: bold">
+        Longitude:<input id="Line2" type="text" /></p>
+   
+    <p style="font-weight: bold">
+        <input id="Submit" type="button" value="Submit" onclick="window.close()"/></p>
+
+</body>
+</html>
